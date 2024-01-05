@@ -44,6 +44,7 @@ public class TodoController {
 
         // 새로운 정보로 업데이트합니다.
         existingTodo.setTitle(todo.getTitle());
+        existingTodo.setContent(todo.getContent());
         existingTodo.setCompleted(todo.isCompleted());
 
         // 업데이트된 Todo를 저장합니다.

@@ -27,6 +27,20 @@
             margin-bottom: 10px;
         }
 
+        input[type="text"] {
+            width: 400px;
+            margin-left: 25px;
+            border: none;
+            border-bottom: 1px solid #bbb;
+        }
+
+        textarea {
+            width: 400px;
+            height: 200px;
+            border: none;
+            border-bottom: 1px solid #bbb;
+        }
+
         button {
             background-color: #F71B22;
             color: #FFF8F9;
@@ -55,12 +69,22 @@
 <h2>Edit Todo</h2>
 
 <form action="/update/{id}" method="post" th:object="${todo}" th:action="@{'/update/' + ${todo.id}}">
-    <input type="hidden" th:field="*{id}"/>
-    <label>Title:</label>
-    <input type="text" th:field="*{title}" required/><br/>
-    <label>Completed:</label>
-    <input type="checkbox" th:field="*{completed}"/><br/>
-    <button type="submit">Update</button>
+    <div>
+        <input type="hidden" th:field="*{id}"/>
+        <label>Title:</label>
+        <input type="text" th:field="*{title}" required/>
+    </div>
+    <div>
+        <label>Content:</label>
+        <textarea th:field="*{content}" required></textarea>
+    </div>
+    <div>
+        <label>Completed:</label>
+        <input type="checkbox" th:field="*{completed}"/><br/>
+    </div>
+    <div>
+        <button type="submit">Update</button>
+    </div>
 </form>
 
 <a th:href="@{/}">Back to List</a>
