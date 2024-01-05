@@ -3,31 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <title>Todo List</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #FFF8F9;
+            margin: 20px;
+        }
+
+        h2 {
+            color: #0C0002;
+        }
+
+        .container {
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            align-items: center;
+        }
+
+        label {
+            color: #0C0002;
+            margin-right: 10px;
+        }
+
+        input[type="text"] {
+            padding: 8px;
+            width: 200px;
+            border: none;
+        }
+
+        button {
+            background-color: #F71B22;
+            color: #FFF8F9;
+            padding: 8px 12px;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #F9A243;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #F71B22;
+            color: #FFF8F9;
+        }
+
+        td a {
+            color: #FAA774;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+        td a:hover {
+            color: #F9A243;
+        }
+    </style>
 </head>
 <body>
 
-<h2>Todo List</h2>
-<div>
+<div class="container">
+    <h2>Todo List</h2>
     <form action="/add" method="post" th:object="${newTodo}">
-        <label>Title: <input type="text" th:field="*{title}" required/></label>
+        <label>Title:</label>
+        <input type="text" th:field="*{title}" required/>
         <button type="submit">Add</button>
     </form>
 </div>
 
-<table border="1">
-    <tr>
-        <th>ID</th>
-        <th>Title</th>
-        <th>Completed</th>
-    </tr>
-    <tr th:each="todo : ${todos}">
-        <td th:text="${todo.id}"></td>
-        <td th:text="${todo.title}"></td>
-        <td th:text="${todo.completed}"></td>
-        <td><a th:href="@{/edit/{id}(id=${todo.id})}">Edit</a></td>
-        <td><a th:href="@{/delete/{id}(id=${todo.id})}">Delete</a></td>
-    </tr>
-</table>
+<div class="container">
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Completed</th>
+        </tr>
+        <tr th:each="todo : ${todos}">
+            <td th:text="${todo.id}"></td>
+            <td th:text="${todo.title}"></td>
+            <td th:text="${todo.completed} ? 'O' : 'X'"></td>
+            <td><a th:href="@{/edit/{id}(id=${todo.id})}">Edit</a></td>
+            <td><a th:href="@{/delete/{id}(id=${todo.id})}">Delete</a></td>
+        </tr>
+    </table>
+</div>
 
 </body>
 </html>

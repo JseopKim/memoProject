@@ -10,6 +10,8 @@ public class Todo {
     private Long id;
     @Column(name = "title", nullable = false)
     private String title;
+    @Column(name = "content", nullable = false)
+    private String content;
     @Column(name = "completed")
     private boolean completed;
 
@@ -36,9 +38,16 @@ public class Todo {
     public void setTitle(String title) {
         this.title = title;
     }
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
 
     public boolean isCompleted() {
-        return completed;
+        return this.completed;
     }
 
     public void setCompleted(boolean completed) {

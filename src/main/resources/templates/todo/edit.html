@@ -1,19 +1,69 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"/>
+    <meta charset="UTF-8">
     <title>Edit Todo</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #FFF8F9;
+            margin: 20px;
+        }
+
+        h2 {
+            color: #0C0002;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            color: #0C0002;
+            margin-right: 10px;
+        }
+
+        input[type="text"], input[type="checkbox"] {
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #F71B22;
+            color: #FFF8F9;
+            padding: 8px 12px;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #F9A243;
+        }
+
+        a {
+            color: #FAA774;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+        a:hover {
+            color: #F9A243;
+        }
+    </style>
 </head>
 <body>
+
 <h2>Edit Todo</h2>
 
 <form action="/update/{id}" method="post" th:object="${todo}" th:action="@{'/update/' + ${todo.id}}">
     <input type="hidden" th:field="*{id}"/>
-    <label>Title: <input type="text" th:field="*{title}" required/></label><br/>
-    <label>Completed: <input type="checkbox" th:field="*{completed}"/></label><br/>
+    <label>Title:</label>
+    <input type="text" th:field="*{title}" required/><br/>
+    <label>Completed:</label>
+    <input type="checkbox" th:field="*{completed}"/><br/>
     <button type="submit">Update</button>
 </form>
 
 <a th:href="@{/}">Back to List</a>
+
 </body>
 </html>
